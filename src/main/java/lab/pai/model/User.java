@@ -1,5 +1,6 @@
 package lab.pai.model;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -53,13 +54,12 @@ public class User {
     		+ "at least one lower case letter, "
     		+ "at least 8 characters without whitespaces")
     private String password;
-    @Column(name = "status", columnDefinition = "boolean default true")
-    private Boolean status;
-    @Column(name = "registrationName", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-	private LocalDateTime registrationDate; 
+    private Boolean status = true;
+    @Column(name = "registrationName")
+	private LocalDate registrationDate = LocalDate.now(); 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "roleId")
-    @Column(name = "role", columnDefinition = "role default ROLE_USER")
+    @Column(name = "role")
     private List<Role> role;
     @OneToMany(cascade = CascadeType.ALL)
     @Column(name = "delegation")
@@ -143,10 +143,10 @@ public class User {
 	public void setStatus(Boolean status) {
 		this.status = status;
 	}
-	public LocalDateTime getRegistrationDate() {
+	public LocalDate getRegistrationDate() {
 		return registrationDate;
 	}
-	public void setRegistrationDate(LocalDateTime registrationDate) {
+	public void setRegistrationDate(LocalDate registrationDate) {
 		this.registrationDate = registrationDate;
 	}
 	public List<Role> getRole() {

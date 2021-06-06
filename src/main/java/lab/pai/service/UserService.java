@@ -19,14 +19,15 @@ public interface UserService {
 	List<Delegation> getAllDelByUserOrderByDateStartDesc(long userId);
 	void makeAdmin(long userId);
 	void makeUser(long userId);
+	void changeUser(long userId, User user);
 	
-    User registerNewUserAccount(User user);
+    //User registerNewUserAccount(User user);
 
-    User getUser(String verificationToken);
+    //User getUser(String verificationToken);
 
-    void saveRegisteredUser(User user);
+    //void saveRegisteredUser(User user);
 
-    void createVerificationToken(User user, String token);
+    //void createVerificationToken(User user, String token);
 
-    VerificationToken getVerificationToken(String VerificationToken);
+    //VerificationToken getVerificationToken(String VerificationToken);
 }

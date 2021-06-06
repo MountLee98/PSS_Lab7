@@ -35,7 +35,7 @@ public class MainView extends AppLayout{
         createDrawer();
     }
     private void createHeader() {
-        H1 logo = new H1("DIET APP");
+        H1 logo = new H1("PSS LAB");
         logo.addClassName("logo");
 
         Anchor logout =  new Anchor("/logout", "Log Out");
@@ -50,14 +50,17 @@ public class MainView extends AppLayout{
     }
 
     private void createDrawer() {
-        RouterLink userLink = new RouterLink("User", UserView.class);
+        RouterLink userLink = new RouterLink("Admin Users", UserView.class);
         RouterLink loginLink = new RouterLink("Login", LoginView.class);
         RouterLink mainLink = new RouterLink("Main", MainPage.class);
         RouterLink delegationLink = new RouterLink("Delegations", DelegationView.class);
+        RouterLink adminDelegationLink = new RouterLink("Admin Delegations", AdminDelegationView.class);
         loginLink.setHighlightCondition(HighlightConditions.sameLocation());
         userLink.setHighlightCondition(HighlightConditions.sameLocation());
         mainLink.setHighlightCondition(HighlightConditions.sameLocation());
         delegationLink.setHighlightCondition(HighlightConditions.sameLocation());
+        VerticalLayout ver = new VerticalLayout(mainLink, delegationLink, adminDelegationLink, userLink);
+        addToDrawer(ver);
     }
 
     public String currentUser(){

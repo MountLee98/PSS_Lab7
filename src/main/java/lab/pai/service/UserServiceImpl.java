@@ -35,8 +35,8 @@ public class UserServiceImpl implements UserService{
 	@Autowired
 	RoleRepo roleRepo;
 	
-    @Autowired
-    private VerificationTokenRepo tokenRepo;
+//    @Autowired
+//    private VerificationTokenRepo tokenRepo;
 	
 	public User registerUser(User user) {
 		// TODO Auto-generated method stub
@@ -54,6 +54,7 @@ public class UserServiceImpl implements UserService{
 		if(u.isPresent()) {
 			User user = u.get();
 			user.setPassword(newPassword);
+			userRepo.save(user);
 		}
 		
 	}
@@ -126,12 +127,19 @@ public class UserServiceImpl implements UserService{
 		   if(u.isPresent()) {
 			   User user = u.get();
 			   List<Role> userRole = user.getRole();
-				Long roleId = 2L;
+				Long roleId = 1L;
 				Optional<Role> r = roleRepo.findById(roleId);
 				if(r.isPresent()) {
 					Role role = r.get();
 					userRole.add(role);
-					user.setRole(userRole);
+					roleId = 2L;
+					Optional<Role> r2 = roleRepo.findById(roleId);
+					if(r.isPresent()) {
+						Role role2 = r2.get();
+						userRole.add(role2);
+						user.setRole(userRole);
+						userRepo.save(user);
+					}
 					//userRepo.findById(userId).map(User::setRole)
 							//user -> {
 						//user.setRole(userRole);
@@ -156,78 +164,86 @@ public class UserServiceImpl implements UserService{
 					Role role = r.get();
 					userRole.add(role);
 					user.setRole(userRole);
+					userRepo.save(user);
 				}
 	    	}	
 	    }
-	    
-	    public UserDetails loadUserByUsername(String email) 
-	    		  throws UsernameNotFoundException {
-	    		 
-	    		    boolean enabled = true;
-	    		    boolean accountNonExpired = true;
-	    		    boolean credentialsNonExpired = true;
-	    		    boolean accountNonLocked = true;
-	    		    try {
-	    		        User user = userRepo.findByEmail(email);
-	    		        if (user == null) {
-	    		            throw new UsernameNotFoundException(
-	    		              "No user found with username: " + email);
-	    		        }
-	    		        
-	    		        return new org.springframework.security.core.userdetails.User(
-	    		          user.getEmail(), 
-	    		          user.getPassword().toLowerCase(), 
-	    		          user.isEnabled(), 
-	    		          accountNonExpired, 
-	    		          credentialsNonExpired, 
-	    		          accountNonLocked, 
-	    		          getAuthorities(user.getRole()));
-	    		    } catch (Exception e) {
-	    		        throw new RuntimeException(e);
-	    		    }
-	    }
-	    
-	    @Override
-	    public User registerNewUserAccount(User user) {
-	        
-	        if (emailExist(user.getEmail())) {
-//	            throw new UserAlreadyExistException(
-//	              "There is an account with that email adress: " 
-//	              + userDto.getEmail());
-	        }
-	        
-	        User user2 = new User();
-	        user.setFirstName(user.getFirstName());
-	        user.setLastName(user.getLastName());
-	        user.setPassword(user.getPassword());
-	        user.setEmail(user.getEmail());
-	        user.setRole(new Role(Integer.valueOf(1), user));
-	        return userRepo.save(user);
-	    }
 
-	    private boolean emailExist(String email) {
-	        return userRepo.findByEmail(email) != null;
-	    }
+		@Override
+		public void changeUser(long userId, User user) {
+			if(userRepo.existsById(userId)){
+	            userRepo.save(user);
+	        }			
+		}
 	    
-	    @Override
-	    public User getUser(String verificationToken) {
-	        User user = tokenRepo.findByToken(verificationToken).getUser();
-	        return user;
-	    }
-	    
-	    @Override
-	    public VerificationToken getVerificationToken(String VerificationToken) {
-	        return tokenRepo.findByToken(VerificationToken);
-	    }
-	    
-	    @Override
-	    public void saveRegisteredUser(User user) {
-	        userRepo.save(user);
-	    }
-	    
-	    @Override
-	    public void createVerificationToken(User user, String token) {
-	        VerificationToken myToken = new VerificationToken(token, user);
-	        tokenRepo.save(myToken);
-	    }
+//	    public UserDetails loadUserByUsername(String email) 
+//	    		  throws UsernameNotFoundException {
+//	    		 
+//	    		    boolean enabled = true;
+//	    		    boolean accountNonExpired = true;
+//	    		    boolean credentialsNonExpired = true;
+//	    		    boolean accountNonLocked = true;
+//	    		    try {
+//	    		        User user = userRepo.findByEmail(email);
+//	    		        if (user == null) {
+//	    		            throw new UsernameNotFoundException(
+//	    		              "No user found with username: " + email);
+//	    		        }
+//	    		        
+//	    		        return new org.springframework.security.core.userdetails.User(
+//	    		          user.getEmail(), 
+//	    		          user.getPassword().toLowerCase(), 
+//	    		          user.isEnabled(), 
+//	    		          accountNonExpired, 
+//	    		          credentialsNonExpired, 
+//	    		          accountNonLocked, 
+//	    		          getAuthorities(user.getRole()));
+//	    		    } catch (Exception e) {
+//	    		        throw new RuntimeException(e);
+//	    		    }
+//	    }
+//	    
+//	    @Override
+//	    public User registerNewUserAccount(User user) {
+//	        
+//	        if (emailExist(user.getEmail())) {
+////	            throw new UserAlreadyExistException(
+////	              "There is an account with that email adress: " 
+////	              + userDto.getEmail());
+//	        }
+//	        
+//	        User user2 = new User();
+//	        user.setFirstName(user.getFirstName());
+//	        user.setLastName(user.getLastName());
+//	        user.setPassword(user.getPassword());
+//	        user.setEmail(user.getEmail());
+//	        user.setRole(new Role(Integer.valueOf(1), user));
+//	        return userRepo.save(user);
+//	    }
+//
+//	    private boolean emailExist(String email) {
+//	        return userRepo.findByEmail(email) != null;
+//	    }
+//	    
+//	    @Override
+//	    public User getUser(String verificationToken) {
+//	        User user = tokenRepo.findByToken(verificationToken).getUser();
+//	        return user;
+//	    }
+//	    
+//	    @Override
+//	    public VerificationToken getVerificationToken(String VerificationToken) {
+//	        return tokenRepo.findByToken(VerificationToken);
+//	    }
+//	    
+//	    @Override
+//	    public void saveRegisteredUser(User user) {
+//	        userRepo.save(user);
+//	    }
+//	    
+//	    @Override
+//	    public void createVerificationToken(User user, String token) {
+//	        VerificationToken myToken = new VerificationToken(token, user);
+//	        tokenRepo.save(myToken);
+//	    }
 }

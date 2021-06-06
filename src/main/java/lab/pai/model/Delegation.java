@@ -1,5 +1,6 @@
 package lab.pai.model;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
@@ -22,17 +23,17 @@ public class Delegation {
 	@Column(name = "description")
 	private String description;
 	@Column(name = "dateTimeStart", nullable = false)
-	private LocalDateTime dateTimeStart;
+	private LocalDate dateTimeStart;
 	@Column(name = "dateTimeStop", nullable = false)
-	private LocalDateTime dateTimeStop;
+	private LocalDate dateTimeStop;
 	@Column(name = "travelDietAmount", columnDefinition = "integer default 30")
-	private Integer travelDietAmount;
+	private Integer travelDietAmount = 30;
 	@Column(name = "breakfastNumber", columnDefinition = "integer default 0")
-	private Integer breakfastNumber;
+	private Integer breakfastNumber = 0;
 	@Column(name = "dinnerNumber", columnDefinition = "integer default 0")
-	private Integer dinnerNumber;
+	private Integer dinnerNumber = 0;
 	@Column(name = "supperNumber", columnDefinition = "integer default 0")
-	private Integer supperNumber;
+	private Integer supperNumber = 0;
 	@Column(name = "transportType")
 	private Transport transportType;
 	@Column(name = "ticketPrice")
@@ -57,7 +58,7 @@ public class Delegation {
 
 	}
 	
-	public Delegation(LocalDateTime dateTimeStart, LocalDateTime dateTimeStop) {
+	public Delegation(LocalDate dateTimeStart, LocalDate dateTimeStop) {
         this.dateTimeStart = dateTimeStart;
         this.dateTimeStop = dateTimeStop;
 	}
@@ -96,16 +97,16 @@ public class Delegation {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public LocalDateTime getDateTimeStart() {
+	public LocalDate getDateTimeStart() {
 		return dateTimeStart;
 	}
-	public void setDateTimeStart(LocalDateTime dateTimeStart) {
+	public void setDateTimeStart(LocalDate dateTimeStart) {
 		this.dateTimeStart = dateTimeStart;
 	}
-	public LocalDateTime getDateTimeStop() {
+	public LocalDate getDateTimeStop() {
 		return dateTimeStop;
 	}
-	public void setDateTimeStop(LocalDateTime dateTimeStop) {
+	public void setDateTimeStop(LocalDate dateTimeStop) {
 		this.dateTimeStop = dateTimeStop;
 	}
 	public Integer getTravelDietAmount() {

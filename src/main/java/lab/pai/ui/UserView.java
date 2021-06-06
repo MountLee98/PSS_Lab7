@@ -16,7 +16,7 @@ import com.vaadin.flow.router.Route;
 import lab.pai.model.User;
 import lab.pai.service.UserService;
 
-@Route(value="users", layout = MainView.class)
+@Route(value="admin/users", layout = MainView.class)
 @PageTitle("Users ")
 public class UserView extends VerticalLayout{
 

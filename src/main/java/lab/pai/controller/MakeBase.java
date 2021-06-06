@@ -1,5 +1,6 @@
 package lab.pai.controller;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,10 +38,10 @@ public class MakeBase {
 		roleService.addRole(new Role("ROLE_ADMIN"));
 		
 		Role user = new Role();
-		user = roleService.getRoleById(0L);
+		user = roleService.getRoleById(1L);
 		
 		Role admin = new Role();
-		admin = roleService.getRoleById(1L);
+		admin = roleService.getRoleById(2L);
 		
 		List<Role> roleUser = new ArrayList<>();
 		List<Role> roleUserAdmin = new ArrayList<>();
@@ -53,25 +54,25 @@ public class MakeBase {
 		User b = new User("Brzydki", "Brzydka 1", "23453213456", "Marcin", "Zmudlowski", "mzmu@gmail.com", "Brzydki5643");
 		User j = new User("Jakas", "Jakas 8", "87934567321", "Robert", "Adamowski", "rada@gmail.com", "Jakas9876");
 		
-		p.setRole(roleUser);
+		p.setRole(roleUserAdmin);
 		b.setRole(roleUser);
-		j.setRole(roleUserAdmin);
+		j.setRole(roleUser);
 		
 		userService.registerUser(p);
 		userService.registerUser(b);
 		userService.registerUser(j);
 		
-		LocalDateTime dataStart = LocalDateTime.now().plusMonths(1);
-        LocalDateTime dataStop = dataStart.plusMonths(3);
+		LocalDate dataStart = LocalDate.now().plusMonths(1);
+        LocalDate dataStop = dataStart.plusMonths(3);
 		
 		Delegation p1 = new Delegation(dataStart, dataStop);
 		
-		dataStart = LocalDateTime.now().plusMonths(4);
+		dataStart = LocalDate.now().plusMonths(4);
         dataStop = dataStart.plusMonths(5);		
 		
 		Delegation p2 = new Delegation(dataStart, dataStop);
 		
-		dataStart = LocalDateTime.now().plusMonths(2);
+		dataStart = LocalDate.now().plusMonths(2);
         dataStop = dataStart.plusMonths(4);
         
         Delegation b1 = new Delegation(dataStart, dataStop);

@@ -54,16 +54,16 @@ public class DelegationForm extends FormLayout{
     BeanValidationBinder<Delegation> binder = new BeanValidationBinder<>(Delegation.class);
 
     public DelegationForm(){
-        binder.forField(description).bind(Delegation::getDescription, Delegation::setDescription);
-        binder.forField(travelDietAmount).withConverter(new StringToIntegerConverter("Enter a number")).bind(Delegation::getTravelDietAmount, Delegation::setTravelDietAmount);
-        binder.forField(breakfastNumber).withConverter(new StringToIntegerConverter("Enter a number")).bind(Delegation::getBreakfastNumber, Delegation::setBreakfastNumber);
-        binder.forField(dinnerNumber).withConverter(new StringToIntegerConverter("Enter a number")).bind(Delegation::getDinnerNumber, Delegation::setDinnerNumber);
-        binder.forField(supperNumber).withConverter(new StringToIntegerConverter("Enter a number")).bind(Delegation::getSupperNumber, Delegation::setSupperNumber);
+        binder.forField(description).withNullRepresentation("").bind(Delegation::getDescription, Delegation::setDescription);
+        binder.forField(travelDietAmount).withNullRepresentation("").withConverter(new StringToIntegerConverter("Enter a number")).bind(Delegation::getTravelDietAmount, Delegation::setTravelDietAmount);
+        binder.forField(breakfastNumber).withNullRepresentation("").withConverter(new StringToIntegerConverter("Enter a number")).bind(Delegation::getBreakfastNumber, Delegation::setBreakfastNumber);
+        binder.forField(dinnerNumber).withNullRepresentation("").withConverter(new StringToIntegerConverter("Enter a number")).bind(Delegation::getDinnerNumber, Delegation::setDinnerNumber);
+        binder.forField(supperNumber).withNullRepresentation("").withConverter(new StringToIntegerConverter("Enter a number")).bind(Delegation::getSupperNumber, Delegation::setSupperNumber);
         binder.forField(ticketPrice).withNullRepresentation("").withConverter(new StringToFloatConverter("Enter a number")).bind(Delegation::getTicketPrice,Delegation::setTicketPrice);
         binder.forField(km).withNullRepresentation("").withConverter(new StringToFloatConverter("Enter a number")).bind(Delegation::getKm, Delegation::setKm);
         binder.forField(accomodationPrice).withNullRepresentation("").withConverter(new StringToFloatConverter("Enter a number")).bind(Delegation::getAccomodationPrice, Delegation::setAccomodationPrice);
         binder.forField(otherTicketsPrice).withNullRepresentation("").withConverter(new StringToFloatConverter("Enter a number")).bind(Delegation::getOtherTicketsPrice, Delegation::setOtherTicketsPrice);
-        binder.forField(otherOutlayDesc).bind(Delegation::getOtherOutlayDesc, Delegation::setOtherOutlayDesc);
+        binder.forField(otherOutlayDesc).withNullRepresentation("").bind(Delegation::getOtherOutlayDesc, Delegation::setOtherOutlayDesc);
         binder.forField(otherOutlayPrice).withNullRepresentation("").withConverter(new StringToFloatConverter("Enter a number")).bind(Delegation::getOtherOutlayPrice, Delegation::setOtherOutlayPrice);
         binder.forField(dateTimeStart).withConverter(new LocalDateToDateConverter(ZoneId.systemDefault())).bind("dateTimeStart");
         binder.forField(dateTimeStop).withConverter(new LocalDateToDateConverter(ZoneId.systemDefault())).bind("dateTimeStop");

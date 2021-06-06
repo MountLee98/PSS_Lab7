@@ -1,5 +1,6 @@
 package lab.pai;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,8 +48,8 @@ public class DelegationTests {
     	entityManager.persist(userTest);
         entityManager.flush();
         
-        LocalDateTime dataStart = LocalDateTime.now();
-        LocalDateTime dataStop = dataStart.plusMonths(1);
+        LocalDate dataStart = LocalDate.now();
+        LocalDate dataStop = dataStart.plusMonths(1);
 
         Delegation delegationTest = new Delegation(dataStart, dataStop);
         
@@ -70,15 +71,15 @@ public class DelegationTests {
         
         List<Delegation> userDelegations = new ArrayList<>();
         
-        LocalDateTime dataStart = LocalDateTime.now();
-        LocalDateTime dataStop = dataStart.plusMonths(1);
+        LocalDate dataStart = LocalDate.now();
+        LocalDate dataStop = dataStart.plusMonths(1);
 
         Delegation delegationTest1 = new Delegation(dataStart, dataStop);
         
         userDelegations.add(delegationTest1);
         entityManager.persist(delegationTest1);
         
-        dataStart = LocalDateTime.now();
+        dataStart = LocalDate.now();
         dataStop = dataStart.plusMonths(2);
 
         Delegation delegationTest2 = new Delegation(dataStart, dataStop);
@@ -101,8 +102,8 @@ public class DelegationTests {
     @Test
     public void changeDelegation() throws Exception {
         
-        LocalDateTime dataStart = LocalDateTime.now();
-        LocalDateTime dataStop = dataStart.plusMonths(1);
+        LocalDate dataStart = LocalDate.now();
+        LocalDate dataStop = dataStart.plusMonths(1);
 
         Delegation delegationTest = new Delegation(dataStart, dataStop);
         
@@ -123,8 +124,8 @@ public class DelegationTests {
         
         List<Delegation> delegations = new ArrayList<>();
         
-        LocalDateTime dataStart = LocalDateTime.now();
-        LocalDateTime dataStop = dataStart.plusMonths(1);
+        LocalDate dataStart = LocalDate.now();
+        LocalDate dataStop = dataStart.plusMonths(1);
 
         Delegation delegationTest1 = new Delegation(dataStart, dataStop);
         
@@ -132,7 +133,7 @@ public class DelegationTests {
         entityManager.persist(delegationTest1);
         entityManager.flush();
         
-        dataStart = LocalDateTime.now();
+        dataStart = LocalDate.now();
         dataStop = dataStart.plusMonths(2);
         
         Delegation delegationTest2 = new Delegation(dataStart, dataStop);
@@ -151,21 +152,21 @@ public class DelegationTests {
         
         List<Delegation> delegations = new ArrayList<>();
         
-        LocalDateTime dataStart = LocalDateTime.now();
-        LocalDateTime dataStop = dataStart.plusMonths(3);
+        LocalDate dataStart = LocalDate.now();
+        LocalDate dataStop = dataStart.plusMonths(3);
 
         Delegation delegationTest1 = new Delegation(dataStart, dataStop);
         
         delegations.add(delegationTest1);
         
-        dataStart = LocalDateTime.now();
+        dataStart = LocalDate.now();
         dataStop = dataStart.plusMonths(1);
         
         Delegation delegationTest2 = new Delegation(dataStart, dataStop);
         
         delegations.add(delegationTest2);
         
-        dataStart = LocalDateTime.now();
+        dataStart = LocalDate.now();
         dataStop = dataStart.plusMonths(2);
         
         Delegation delegationTest3 = new Delegation(dataStart, dataStop);

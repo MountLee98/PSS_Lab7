@@ -21,7 +21,7 @@ import lab.pai.model.User;
 import lab.pai.service.DelegationService;
 import lab.pai.service.UserService;
 
-@Route(value="delegation")
+@Route(value="delegation", layout = MainView.class)
 @PageTitle("Delegation")
 public class DelegationView extends VerticalLayout{
 
@@ -84,8 +84,8 @@ public class DelegationView extends VerticalLayout{
     }
 
     private void deleteDelegation(DelegationForm.DeleteEvent del) {
-        LocalDateTime date = LocalDateTime.now();
-        if (del.getDelegation().getDateTimeStart().compareTo(date) > 0){
+    	Date date = java.sql.Date.valueOf(LocalDate.now());
+        if (del.getDelegation().getDateTimeStart().equals(date)!=true){
             delegationService.removeDelegation(user.getUserId(), del.getDelegation().getDelegationId());
             updateList();
             closeEditor();
@@ -100,8 +100,8 @@ public class DelegationView extends VerticalLayout{
     }
 
     private void modifyDelegation(DelegationForm.ModifyEvent del){
-    	LocalDateTime date = LocalDateTime.now();
-        if (del.getDelegation().getDateTimeStart().compareTo(date) > 0){
+    	Date date = java.sql.Date.valueOf(LocalDate.now());
+        if (del.getDelegation().getDateTimeStart().equals(date)!=true){
             delegationService.changeDelegation(del.getDelegation().getDelegationId(),del.getDelegation());
             updateList();
             closeEditor();

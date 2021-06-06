@@ -27,7 +27,7 @@ import com.vaadin.flow.router.Route;
 import lab.pai.model.User;
 import lab.pai.service.UserService;
 
-@Route(value="register", layout = MainView.class)
+@Route(value="register")
 @PageTitle("Registration")
 public class RegistrationView extends VerticalLayout{
 

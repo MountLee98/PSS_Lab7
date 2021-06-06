@@ -1,5 +1,6 @@
 package lab.pai;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -146,17 +147,17 @@ public class UserTests {
         List<Delegation> userDelegations = new ArrayList<>();
         List<Delegation> sortDelegations = new ArrayList<>();
         
-        LocalDateTime dataStart = LocalDateTime.now().plusMonths(2);
-        LocalDateTime dataStop = dataStart.plusMonths(3);
+        LocalDate dataStart = LocalDate.now().plusMonths(2);
+        LocalDate dataStop = dataStart.plusMonths(3);
 
         Delegation delegationTest1 = new Delegation(dataStart, dataStop);
         
-        dataStart = LocalDateTime.now();
+        dataStart = LocalDate.now();
         dataStop = dataStart.plusMonths(1);
         
         Delegation delegationTest2 = new Delegation(dataStart, dataStop);
         
-        dataStart = LocalDateTime.now().plusMonths(1);
+        dataStart = LocalDate.now().plusMonths(1);
         dataStop = dataStart.plusMonths(2);
         
         Delegation delegationTest3 = new Delegation(dataStart, dataStop);

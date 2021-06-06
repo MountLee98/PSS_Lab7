@@ -1,5 +1,6 @@
 package lab.pai.controller;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -30,8 +31,8 @@ public class DelegationController {
 	UserService userService;
 	
 	@PostMapping("/adduserdelegtion")
-	void addDelegation(@RequestParam("userId")long userId, @RequestParam("dateTimeStart")LocalDateTime dateTimeStart, 
-			@RequestParam("dateTimeStop")LocalDateTime dateTimeStop) {
+	void addDelegation(@RequestParam("userId")long userId, @RequestParam("dateTimeStart")LocalDate dateTimeStart, 
+			@RequestParam("dateTimeStop")LocalDate dateTimeStop) {
 		delegationService.addDelegation(userId, new Delegation(dateTimeStart,dateTimeStop));
 	}
 	
